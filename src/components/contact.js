@@ -6,7 +6,7 @@ export default class Home extends React.Component {
     return (
     <div>
       <div style={{textAlign: 'center'}}>
-        <div>SIGNUP PAGE</div>
+        <div>CONTACT PAGE</div>
       </div>
     </div>
     );
