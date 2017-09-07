@@ -19,6 +19,9 @@ const NavbarInstance = () => (
       <LinkContainer to="/contact">
         <NavItem eventKey={3}>Contact</NavItem>
       </LinkContainer>
+      <LinkContainer to="/search">
+        <NavItem eventKey={5} href="#">Search</NavItem>
+      </LinkContainer>
       <LinkContainer to="/login">
         <NavItem eventKey={4}>Login</NavItem>
       </LinkContainer>
