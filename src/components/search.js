@@ -13,6 +13,10 @@ const languages = [
   {
     name: 'Ruby',
     year: 2012
+  },
+  {
+    name: 'JavaScript',
+    year: 2012
   }
 ];
 
