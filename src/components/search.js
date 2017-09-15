@@ -1,5 +1,6 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
+import theme from '../css/style.css';
 
 const languages = [
   {
@@ -131,14 +132,15 @@ export default class Search extends React.Component {
 
     // Finally, render it!
     return (
-      <div style={{textAlign: 'center'}}>
+      <div style={{textAlign: 'center', listStyle: 'none'}}>
         <Autosuggest
+          theme={theme}
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           getSuggestionValue={getSuggestionValue}
           renderSuggestion={renderSuggestion}
-          inputProps={inputProps}
+          inputProps={inputProps}          
         />
       </div>
     );

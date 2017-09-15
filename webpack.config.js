@@ -44,14 +44,14 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
       },
       {
+        test: /\.css$/,
+        loader: "style-loader!css-loader",
+      },
+      {
         test: /\.less$/,
         loaders: ["style", "css?sourceMap", "less?sourceMap"],
         exclude: /(node_modules|bower_components)/,
-        include: path.join(__dirname, 'rapidfab')
-      },
-      {
-        test: /\.css$/,
-        loaders: ["style", "css-loader"],
+        include: path.join(__dirname, 'htm-project')
       },
       { test: /\.png$/,                         loader: "url-loader?mimetype=image/png" },
       { test: /\.jpg$/,                         loader: "url-loader?mimetype=image/jpg" },
