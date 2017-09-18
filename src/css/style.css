@@ -3,6 +3,14 @@ ul {
 }
 .suggestionsContainer { 
     list-style: none;
+    margin-left: 50px;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    position: relative;
+    width: 300px;
+    max-width: 450px;
+    height: 47px;
+    margin-top: 50px;
 }
 .suggestion {
     list-style: none;

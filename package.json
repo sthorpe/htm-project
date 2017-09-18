@@ -9,7 +9,7 @@
     "test:junit": "./node_modules/karma/bin/karma start --single-run --reporters junit,dots",
     "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js -d"
   },
-  "author": "Scott Thorpe",
+  "author": "Scott Thorpe and Dale Adams",
   "license": "ISC",
   "dependencies": {
     "assets-webpack-plugin": "^3.5.1",

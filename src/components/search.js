@@ -101,11 +101,12 @@ export default class Search extends React.Component {
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
   }
-
+  
   onChange(event, { newValue }) {
     this.setState({
       value: newValue
     });
+    debugger
   };
 
   onSuggestionsFetchRequested({ value }) {
@@ -132,7 +133,7 @@ export default class Search extends React.Component {
 
     // Finally, render it!
     return (
-      <div style={{textAlign: 'center', listStyle: 'none'}}>
+      <div>
         <Autosuggest
           theme={theme}
           suggestions={suggestions}

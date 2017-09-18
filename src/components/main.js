@@ -7,6 +7,7 @@ import Contact from './contact';
 import Login from './login';
 import Signup from './signup';
 import Search from './search';
+import Test from './test';
 
 const Main = () => (
   <main>
@@ -18,6 +19,7 @@ const Main = () => (
       <Route path='/login' component={Login}/>
       <Route path='/signup' component={Signup}/>
       <Route path='/search' component={Search}/>
+      <Route path='/test' component={Test}/>
     </Switch>
   </main>
 )
