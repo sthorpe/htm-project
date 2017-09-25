@@ -9,8 +9,8 @@ pipeline {
             }
             steps {
                 withEnv(["GITDESCRIBE=${sh(returnStdout: true, script: 'git describe | tr -d \'\n\'')}"]) {
-                    sh 'docker build -t htm-project:$GITDESCRIBE .'
-                    sh 'docker run -d --name htm-project -p 8080:8080 htm-project:$GITDESCRIBE'
+                    sh 'docker build -t htm-project .'
+                    sh 'docker run -d --name htm-project -p 8080:8080 htm-project'
                 }
             }
         }
