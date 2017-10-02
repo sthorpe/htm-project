@@ -5,18 +5,18 @@ pipeline {
     stages {
         stage('Docker container start') {
             steps {
-                sh 'docker start htm-project'
+                docker start htm-project
             }
         }
         stage('Test') {
             steps {
-                sh 'docker exec htm-project npm test'
+                docker exec htm-project npm test
             }
         }
     }
     post {
         always {
-            sh 'docker stop htm-project'
+            docker stop htm-project
         }
     }
 }
