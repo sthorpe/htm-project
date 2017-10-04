@@ -1,10 +1,10 @@
-  node("docker-stage") {
+  node("docker-612367dbba5d-8e81ceef") {
     checkout scm
 
     stage("Production") {
       try {
         sh "docker rm -f localhost:5000/htm-project || true"
-        sh "docker run -d -p 8080:8080 --name=htm-project localhost:5000/htm-project"
+        sh "docker run -d -p 8080:9090 --name=htm-project localhost:5000/htm-project"
 
       } catch(e) {
         error "Staging failed"
