@@ -1,4 +1,4 @@
-  node("docker-612367dbba5d-8e81ceef") {
+  node("master") {
     checkout scm
 
     stage("Production") {
