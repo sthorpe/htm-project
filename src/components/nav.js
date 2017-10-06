@@ -24,12 +24,6 @@ const NavbarInstance = () => (
       </LinkContainer>
       <LinkContainer to="/login">
         <NavItem eventKey={4}>Login</NavItem>
-      </LinkContainer>
-      <LinkContainer to="/signup">
-        <NavItem eventKey={5} href="#">Signup</NavItem>
-      </LinkContainer>
-      <LinkContainer to="/test">
-        <NavItem eventKey={5} href="#">Test</NavItem>
       </LinkContainer></Nav>
   </Navbar>
 );

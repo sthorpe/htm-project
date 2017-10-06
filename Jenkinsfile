@@ -1,4 +1,4 @@
-  node("master") {
+  node("docker-prod") {
     checkout scm
 
     stage("Production") {
