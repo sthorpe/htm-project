@@ -13,6 +13,13 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 module.exports = {
   devtool: "inline-source-map",
   entry: './src/index.js',
+  devServer: {
+   allowedHosts: [
+    'www.gensys.tech',
+    'staging.gensys.tech',
+    'gensys.tech'
+   ]
+  },
   output: {
     path: path.resolve('dist'),
     filename: 'index_bundle.js'
