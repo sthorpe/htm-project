@@ -1,0 +1,75 @@
+[{
+  
+    "name": "Arthrex 300 Power System AR-300",
+    "category": 1972,
+    "device_class": "2",
+    "medical_specialty_description": "Neurology",
+    
+  },
+  {
+    "name": "Breas (GE) Breas iSleep 20+",
+    "category": 2012,
+    "device_class": "2", 
+    "medical_specialty_description": "Gastroenterology, Urology",
+  },
+  {
+    "name": "Covidien D:X800 Expiratory Filter",
+    "category": 2012
+  },
+  {
+    "name": "Datex-Ohmeda (GE) 7800 Ventilator",
+    "category": 2012
+  },
+  {
+    "name": "GE CT 9800",
+    "category": 2012
+  },
+  {
+    "name": "GE Healthcare 1.5T 4CH Large Flex Coil",
+    "category": 2012
+  },
+  {
+    "name": "Health-o-meter_1100KL",
+    "category": 2012
+  },
+  {
+    "name": "GE Healthcare Optima MR360",
+    "category": 2012
+  },
+  {
+    "name": "Iris Beckman Coulter CytoFuge 2",
+    "category": 2012
+  },
+  {
+    "name": "Medi-Temp II Blood:Fluid Warmer",
+    "category": 2012
+  },
+  {
+    "name": "Nellcor N-600x",
+    "category": 2012
+  },
+  {
+    "name": "Omron BP710 IntelliSense BP Monitor",
+    "category": 2012
+  },
+  {
+    "name": "Panasonic MCO-170AIC (incubator)",
+    "category": 2012
+  },
+  {
+    "name": "Siemens 2120i Hematology System",
+    "category": 2012
+  },
+  {
+    "name": "Stryker Neptune 2",
+    "category": 2012
+  },
+  {
+    "name": "Wallach LLCO2 Cryosurgery System",
+    "category": 2012
+  },
+  {
+    "name": "Welch Allyn Spot Vital Signs 420TB",
+    "category": 2012
+  }
+]

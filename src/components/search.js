@@ -1,6 +1,6 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
-import theme from '../css/style.css';
+//import theme from '../css/style.css';
 
 const languages = [
   {
@@ -85,9 +85,9 @@ const getSuggestions = value => {
 const getSuggestionValue = suggestion => suggestion.name;
 
 const renderSuggestion = suggestion => (
-  <div>
+  <span>
     {suggestion.name}
-  </div>
+  </span>
 );
 
 export default class Search extends React.Component {
@@ -106,7 +106,7 @@ export default class Search extends React.Component {
     this.setState({
       value: newValue
     });
-    debugger
+    
   };
 
   onSuggestionsFetchRequested({ value }) {
@@ -131,11 +131,26 @@ export default class Search extends React.Component {
       onChange: this.onChange
     };
 
+    const containerStyle = {
+      display: "block",
+      position: "relative",
+      top: "51px",
+      width: "500px",
+      //border: "1px solid #aaa",
+      backgroundColor: "#fff",
+      fontFamily: "Helvetica, sans-serif",
+      fontWeight: "300",
+      fontsSize: "16px",
+      //border-bottom-left-radius: 4px;
+      //borderdsbottom-right-radius: 4px;
+      
+    };
+
     // Finally, render it!
     return (
-      <div>
+    <div>
+      <div className = "container" style={containerStyle}>
         <Autosuggest
-          theme={theme}
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -143,6 +158,7 @@ export default class Search extends React.Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}          
         />
+        </div>
       </div>
     );
   }
