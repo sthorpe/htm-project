@@ -11,7 +11,6 @@ class Login extends React.Component {
     this.state = { options: {} };
     this.redirect = this.redirect.bind(this);
     this.logUserIn = this.logUserIn.bind(this);
-    this.checkStatus = this.checkStatus.bind(this);
 
     this.onChangeItem = this.onChangeItem.bind(this);
     this.onSubmitItem = this.onSubmitItem.bind(this);
