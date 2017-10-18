@@ -5,10 +5,12 @@ import Product from './product';
 import About from './about';
 import Contact from './contact';
 import Login from './login';
+import Logout from './logout';
 import Signup from './signup';
 import Search from './search';
 import Admin from './admin';
 import Test from './test';
+import Devices from './devices';
 
 const Main = () => (
   <main>
@@ -18,6 +20,8 @@ const Main = () => (
       <Route path='/about' component={About}/>
       <Route path='/contact' component={Contact}/>
       <Route path='/login' component={Login}/>
+      <Route path='/logout' component={Logout}/>
+      <Route path='/devices' component={Devices}/>
       <Route path='/signup' component={Signup}/>
       <Route path='/search' component={Search}/>
       <Route path='/admin' component={Admin}/>

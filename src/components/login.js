@@ -2,7 +2,8 @@ import React from 'react';
 import { Well } from 'react-bootstrap';
 //import 'whatwg-fetch';
 import fetch from 'isomorphic-fetch';
-import User from './user';
+import UserProfile from './user';
+import { browserHistory } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor(props) {
@@ -20,21 +21,6 @@ class Login extends React.Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
-  checkStatus(response) {
-    console.log(response.status);
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    } else {
-      var error = new Error(response.statusText);
-      error.response = response;
-      throw error;
-    }
-  }
- 
-  parseJSON(response) {
-    return response.json();
-  }
-
   logUserIn(username, password) {
     let targetUrl = 'http://localhost:8081/api/auth';
     let authCreds =  { "username": username, "password": password };
@@ -45,11 +31,17 @@ class Login extends React.Component {
       headers: {"Content-Type": "application/json"},
     })
     .then(function(response) {
-      console.log(response.json);
       response.json().then(function(data) {
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          console.log('Setting session', data.token);
+        }        
         if (data.admin){
-          window.location = "/admin";
-        } 
+          window.location = '/admin';
+        } else if (data.token) {
+          window.location = '/search';
+        }
+        console.log('failed login?', data);
         console.log('Login success');
       });
     }).catch(function(error) {

@@ -106,7 +106,6 @@ export default class Search extends React.Component {
     this.setState({
       value: newValue
     });
-    debugger
   };
 
   onSuggestionsFetchRequested({ value }) {

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Nav, Navbar, NavItem, NavDropdown, MenuItem, Image } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap';
+import User from './user';
+
+const isLoggedIn = localStorage.getItem('token');
 
 const NavbarInstance = () => (
   <Navbar>
@@ -19,12 +22,21 @@ const NavbarInstance = () => (
       <LinkContainer to="/contact">
         <NavItem eventKey={3}>Contact</NavItem>
       </LinkContainer>
+      { isLoggedIn ? 
       <LinkContainer to="/search">
         <NavItem eventKey={5} href="#">Search</NavItem>
       </LinkContainer>
-      <LinkContainer to="/login">
-        <NavItem eventKey={4}>Login</NavItem>
-      </LinkContainer></Nav>
+      : '' }
+      { isLoggedIn ? 
+        <LinkContainer to="/logout">
+          <NavItem eventKey={4}>logout</NavItem>
+        </LinkContainer>
+      :
+        <LinkContainer to="/login">
+          <NavItem eventKey={4}>Login</NavItem>
+        </LinkContainer> 
+      } 
+      </Nav>
   </Navbar>
 );
 

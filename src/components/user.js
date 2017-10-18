@@ -1,19 +1,30 @@
-var UserProfile = (function() {
-    var full_name = "";
+let UserProfile = (function() {
+    let full_name = "";
+    let currentSession = "";
   
-    var getName = function() {
-      return full_name;
+    let getName = function() {
+        return full_name;
     };
   
-    var setName = function(name) {
-      full_name = name;
+    let setName = function(name) {
+        full_name = name;
+    };
+
+    let getSession = function() {
+        return currentSession;
+    };
+
+    let setSession = function(session) {
+        currentSession = session;
     };
   
     return {
       getName: getName,
-      setName: setName
+      setName: setName,
+      getSession: getSession,
+      setSession: setSession
     };
   
   })();
   
-  export default UserProfile;
+export default UserProfile;

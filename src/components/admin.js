@@ -1,10 +1,53 @@
 import React from 'react';
-import { Well, Table, Nav, Navbar, NavItem, NavDropdown, MenuItem, Image } from 'react-bootstrap';
+import { ButtonGroup, Button, PageHeader, Well, Table, Nav, Navbar, NavItem, NavDropdown, MenuItem, Image } from 'react-bootstrap';
+import UserProfile from './user';
 
-export default class Home extends React.Component {
+export default class Admin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      devices: []
+    };
+    this.getListOfDevices = this.getListOfDevices.bind(this);
+    this.onChangeItem = this.onChangeItem.bind(this);
+  }
+  componentDidMount() {
+    this.getListOfDevices();
+  }
+
+  onChangeItem(event) {
+    this.setState({[event.target.name]: event.target.value});
+  }
+
+  enableDevice(deviceId) {
+    let targetUrl = 'http://localhost:8081/api/device';
+    fetch(targetUrl, { method: 'POST', body: JSON.stringify({"deviceId": deviceId}), headers: {"Content-Type": "application/json"},}).then((responseText) => {
+      return responseText.json();
+    })
+    .then((response) => {
+      this.setState({devices: response});
+    });
+  }
+
+  getListOfDevices() {
+    let targetUrl = 'http://localhost:8081/api/devices';
+    fetch(targetUrl, { method: 'GET', headers: {"Content-Type": "application/json"},}).then((responseText) => {
+      return responseText.json();
+    })
+    .then((response) => {
+      this.setState({devices: response});
+    });
+  }
+
   render() {
+    const {
+      devices
+    } = this.state;
+
     return (
     <div>
+      <PageHeader>User Management 
+      </PageHeader>
       <div style={{textAlign: 'center'}}>
         <Well>
         <Table striped bordered condensed hover>
@@ -46,6 +89,35 @@ export default class Home extends React.Component {
             <td>scampbell</td>
             <td>Enabled</td>
           </tr>          
+        </tbody>
+      </Table>
+      </Well>
+      </div>
+
+      <PageHeader>Device Management 
+        <small> Medical devices</small>
+      </PageHeader>
+
+      <div style={{textAlign: 'center'}}>
+        <Well>
+        <Table striped bordered condensed hover>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{this.state.devices[0] ? this.state.devices[0].name : ''}</td>
+            <td>{this.state.devices[0] ? this.state.devices[0].description : ''}</td>
+            <td>
+            <ButtonGroup>
+              <Button onClick={this.onChangeItem}>Valid?</Button>
+            </ButtonGroup>              
+            </td>
+          </tr>        
         </tbody>
       </Table>
       </Well>
