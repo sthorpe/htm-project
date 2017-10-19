@@ -20,7 +20,7 @@ class Login extends React.Component {
   }
 
   logUserIn(username, password) {
-    let targetUrl = 'http://localhost:8081/api/auth';
+    let targetUrl = 'http://127.0.0.1:8081/api/auth';
     let authCreds =  { "username": username, "password": password };
     
     fetch(targetUrl, {

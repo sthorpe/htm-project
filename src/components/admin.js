@@ -27,7 +27,7 @@ export default class Admin extends React.Component {
   }
 
   enableDevice(deviceId, status) {
-    let targetUrl = 'http://localhost:8081/api/validate-device';
+    let targetUrl = 'http://127.0.0.1:8081/api/validate-device';
     fetch(targetUrl, { method: 'POST', body: JSON.stringify({"deviceId": deviceId, "status": status}), headers: {"Content-Type": "application/json"},}).then((responseText) => {
       return responseText.json();
     });
@@ -35,7 +35,7 @@ export default class Admin extends React.Component {
   }
 
   getListOfDevices() {
-    let targetUrl = 'http://localhost:8081/api/devices';
+    let targetUrl = 'http://127.0.0.1:8081/api/devices';
     fetch(targetUrl, { method: 'GET', headers: {"Content-Type": "application/json"},}).then((responseText) => {
       return responseText.json();
     })
