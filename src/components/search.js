@@ -1,6 +1,7 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
-import theme from '../css/style.css';
+import '../css/style.css';
+import { Button } from 'react-bootstrap';
 
 const languages = [
   {
@@ -86,7 +87,7 @@ const getSuggestionValue = suggestion => suggestion.name;
 
 const renderSuggestion = suggestion => (
   <div>
-    { suggestion.name }
+    { suggestion ? suggestion.name : 'Device not found' }
   </div>
 );
 
@@ -95,11 +96,25 @@ export default class Search extends React.Component {
     super(props)
     this.state = {
       value: '',
-      suggestions: []
+      suggestions: [],
+      noSuggestions: ''
     };
+    this.showForm = this.showForm.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+  }
+
+  showForm() {
+    window.location = '/submit-device';
+  }
+
+  componentDidMount() {
+    let session = localStorage.getItem('token');
+    if (session) {
+    }else{
+      window.location = '/login';
+    }
   }
   
   onChange(event, { newValue }) {
@@ -109,8 +124,11 @@ export default class Search extends React.Component {
   };
 
   onSuggestionsFetchRequested({ value }) {
+    const isInputBlank = value.trim() === '';
+    const noSuggestions = !isInputBlank && getSuggestions(value).length === 0;
     this.setState({
-      suggestions: getSuggestions(value)
+      suggestions: getSuggestions(value),
+      noSuggestions
     });
   };
 
@@ -125,23 +143,35 @@ export default class Search extends React.Component {
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: 'Enter Device Indentifier, Name, or Company',
+      placeholder: 'Enter Device Indentifier',
       value,
       onChange: this.onChange
     };
 
+    const wellStyles = {maxWidth: 400, marginLeft: '500px'};
+    const suggestStyles = {maxWidth: 400, margin: '0 auto 10px'};
+
     // Finally, render it!
     return (
       <div>
-        <Autosuggest
-          theme={theme}
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
-          inputProps={inputProps}          
-        />
+        <div style={suggestStyles}>
+          <Autosuggest
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={getSuggestionValue}
+            renderSuggestion={renderSuggestion}
+            inputProps={inputProps}          
+          />
+        </ div>
+        {
+          this.state.noSuggestions &&
+            <div className="no-suggestions">
+            <div className="well" style={wellStyles}>
+              <Button bsStyle="primary" onClick={ () => this.showForm()} bsSize="large" block>Device not found?</Button>
+            </div>              
+            </div>
+        }
       </div>
     );
   }

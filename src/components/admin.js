@@ -1,6 +1,7 @@
 import React from 'react';
 import { ButtonGroup, Button, PageHeader, Well, Table, Nav, Navbar, NavItem, NavDropdown, MenuItem, Image } from 'react-bootstrap';
 import UserProfile from './user';
+import _ from 'lodash';
 
 export default class Admin extends React.Component {
   constructor(props) {
@@ -8,25 +9,29 @@ export default class Admin extends React.Component {
     this.state = { 
       devices: []
     };
+    this.enableDevice = this.enableDevice.bind(this);
     this.getListOfDevices = this.getListOfDevices.bind(this);
     this.onChangeItem = this.onChangeItem.bind(this);
   }
   componentDidMount() {
-    this.getListOfDevices();
+    let session = localStorage.getItem('token');
+    if (session) {
+      this.getListOfDevices();
+    }else{
+      window.location = '/login';
+    }
   }
 
-  onChangeItem(event) {
+  onChangeItem() {
     this.setState({[event.target.name]: event.target.value});
   }
 
-  enableDevice(deviceId) {
-    let targetUrl = 'http://localhost:8081/api/device';
-    fetch(targetUrl, { method: 'POST', body: JSON.stringify({"deviceId": deviceId}), headers: {"Content-Type": "application/json"},}).then((responseText) => {
+  enableDevice(deviceId, status) {
+    let targetUrl = 'http://localhost:8081/api/validate-device';
+    fetch(targetUrl, { method: 'POST', body: JSON.stringify({"deviceId": deviceId, "status": status}), headers: {"Content-Type": "application/json"},}).then((responseText) => {
       return responseText.json();
-    })
-    .then((response) => {
-      this.setState({devices: response});
     });
+    window.location = '/admin';
   }
 
   getListOfDevices() {
@@ -41,8 +46,26 @@ export default class Admin extends React.Component {
 
   render() {
     const {
-      devices
+      devices      
     } = this.state;
+    
+    const DeviceTable = () => {
+      const device = devices.map(( device, index ) => (
+        <tr key={ index }>
+          <td>{ device ? device.name : '' }</td>
+          <td>{ device ? device.description : '' }</td>
+          <td>
+            {
+              device.status ? 
+              <Button bsStyle='success' onClick={ () => this.enableDevice(device._id, 'false')}>Invalidate</Button> 
+              :
+              <Button onClick={ () => this.enableDevice(device._id, 'true')}>Validate</Button>
+            }
+          </td>
+        </tr>   
+      ))
+      return (<tbody>{device}</tbody>)
+    }
 
     return (
     <div>
@@ -108,17 +131,7 @@ export default class Admin extends React.Component {
             <th>Status</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>{this.state.devices[0] ? this.state.devices[0].name : ''}</td>
-            <td>{this.state.devices[0] ? this.state.devices[0].description : ''}</td>
-            <td>
-            <ButtonGroup>
-              <Button onClick={this.onChangeItem}>Valid?</Button>
-            </ButtonGroup>              
-            </td>
-          </tr>        
-        </tbody>
+        <DeviceTable />     
       </Table>
       </Well>
       </div>

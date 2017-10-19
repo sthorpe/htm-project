@@ -1,6 +1,5 @@
 import React from 'react';
 import { Well } from 'react-bootstrap';
-//import 'whatwg-fetch';
 import fetch from 'isomorphic-fetch';
 import UserProfile from './user';
 import { browserHistory } from 'react-router-dom';

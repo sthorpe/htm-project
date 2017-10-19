@@ -4,6 +4,7 @@ import { Nav, Navbar, NavItem, NavDropdown, MenuItem, Image } from 'react-bootst
 export default class Home extends React.Component {
   componentDidMount() {
     localStorage.removeItem('token');
+    window.location = '/logout';
   }
   render() {
     return (
